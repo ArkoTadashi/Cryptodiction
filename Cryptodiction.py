@@ -31,7 +31,7 @@ data[features] = scaler_features.fit_transform(data[features])
 data[[label]] = scaler_label.fit_transform(data[[label]])
 
 data['GARCH'] = generate_garch_volatility(data[label])
-features.append('GARCH')  # Add GARCH to feature list
+features.append('GARCH')
 
 lag_acf = acf(data[label], nlags=40)
 optimal_lag = np.argmax(lag_acf < 0.2)
