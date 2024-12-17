@@ -54,7 +54,7 @@ data['month'] = data['Date'].dt.month
 data.dropna(inplace=True)
 
 mi_scores = mutual_info_regression(data[features], data[label])
-important_features = [features[i] for i in np.argsort(mi_scores)[-25:]]
+important_features = [features[i] for i in np.argsort(mi_scores)[-35:]]
 data = data[important_features + [label, 'Date', 'day_of_week', 'month']]
 
 class TimeSeriesDataset(Dataset):
