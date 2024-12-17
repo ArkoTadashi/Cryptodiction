@@ -104,7 +104,7 @@ scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='min', patience
 model.train()
 best_loss = float('inf')
 early_stopping_counter = 0
-for epoch in range(30):
+for epoch in range(100):
     epoch_loss = 0
     for inputs, targets in tqdm(train_loader, desc=f"Epoch {epoch+1}"):
         inputs, targets = inputs.to(device), targets.to(device)
