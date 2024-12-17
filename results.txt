@@ -1,0 +1,10 @@
+Mean Squared Error: 2058791.2948
+Mean Absolute Error: 1030.3290
+R-squared: 0.9923
+
+Initial Portfolio Value: $1000
+Final Portfolio Value: $1662.79
+Final USDT Balance: $1501.65
+Final BTC Balance: 0.002418 BTC
+Average Buy Price: $59367.73 per BTC
+Annual Percentage Yield (APY): 40.66%
