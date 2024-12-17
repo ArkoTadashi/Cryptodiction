@@ -10,6 +10,12 @@ from tqdm import tqdm
 from performer_pytorch import Performer
 from statsmodels.tsa.stattools import acf
 from sklearn.feature_selection import mutual_info_regression
+from arch import arch_model
+
+def generate_garch_volatility(series):
+    model = arch_model(series, vol='Garch', p=1, q=1)
+    garch_result = model.fit(disp="off")
+    return garch_result.conditional_volatility
 
 data = pd.read_csv('WithoutScaling.csv', parse_dates=['Date'])
 data.sort_values(by='Date', inplace=True)
@@ -23,6 +29,9 @@ scaler_features = StandardScaler()
 scaler_label = StandardScaler()
 data[features] = scaler_features.fit_transform(data[features])
 data[[label]] = scaler_label.fit_transform(data[[label]])
+
+data['GARCH'] = generate_garch_volatility(data[label])
+features.append('GARCH')  # Add GARCH to feature list
 
 lag_acf = acf(data[label], nlags=40)
 optimal_lag = np.argmax(lag_acf < 0.2)
